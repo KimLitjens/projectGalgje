@@ -2,6 +2,7 @@
 let inputs;
 let gameOver;
 let tries = 0;
+let letterAdded;
 // allTheWords = []
 // This code here selects a random word
 const wordList = [
@@ -13,9 +14,10 @@ const wordList = [
   "snoer",
   "geeuw"
 ];
-const wordpicker = function(list) {
-  let index = Math.floor(Math.random() * list.length);
-  return list[index];
+const wordPicker = () => {
+  let word = wordList[Math.floor(Math.random() * wordList.length)];
+  console.log("wat ben ik?", word);
+  return word;
 };
 
 const wordGuessed = function(word, inputs) {
@@ -35,14 +37,6 @@ const loseGame = function() {
   gameOver = true;
 };
 
-const showWordGameLost = function(word) {
-  document.querySelector(".lose p span").innerHTML = `"${word.join("")}"`;
-};
-
-const updateTriesDisplay = function(tries) {
-  document.querySelector(".lives span").innerHTML = 5 - tries;
-};
-
 const letters = function(word, inputs) {
   let wrongLetters = inputs.filter(function(letter) {
     return !word.includes(letter);
@@ -53,6 +47,7 @@ const letters = function(word, inputs) {
 const theWord = function(word, inputLetterWords) {
   let display = word.map(function(letter) {
     if (inputLetterWords.includes(letter)) {
+      letterAdded = letter;
       return letter;
     } else {
       return "_";
@@ -75,6 +70,7 @@ const guessLetter = function() {
   if (!word.includes(input1)) {
     tries++;
     document.querySelector(".lives span").innerHTML = 5 - tries;
+    console.log(tries);
   }
 
   inputs.push(input1);
@@ -94,7 +90,7 @@ function beginTheGameWithPlayer() {
   document.querySelector(".lose").style.display = "none";
   document.querySelector("input").value = "";
 
-  word = wordpicker(wordList).split("");
+  word = wordPicker(wordList).split("");
   document.querySelector(".lose p span").innerHTML = `"${word.join("")}"`;
 
   tries = 0;
@@ -105,6 +101,38 @@ function beginTheGameWithPlayer() {
   letters(word, inputs);
 }
 
+// const guessLetterByClick = function() {
+//   console.log("a is clicked");
+//   const input1 = "a";
+//   document.querySelector("input").value = "";
+
+//   if (inputs.includes(input1) || input1 === "") {
+//     return;
+//   }
+
+//   if (!word.includes(input1)) {
+//     tries++;
+
+//     document.querySelector(".lives span").innerHTML = 5 - tries;
+//   }
+
+//   inputs.push(input1);
+//   theWord(word, inputs);
+//   letters(word, inputs);
+
+//   if (wordGuessed(word, inputs)) {
+//     winTheGame();
+//   } else if (tries >= 5) {
+//     loseGame();
+//   }
+// };
+// const btns = document.getElementById("a");
+// console.log(btns);
+// const btnsArr = Array.prototype.slice.call(btns);
+// console.log(btnsArr);
+
+// btns.addEventListener("click", guessLetterByClick);
+
 document.addEventListener("DOMContentLoaded", function() {
   document.querySelector(".guess").addEventListener("click", guessLetter);
   document
@@ -112,3 +140,11 @@ document.addEventListener("DOMContentLoaded", function() {
     .addEventListener("click", beginTheGameWithPlayer);
   beginTheGameWithPlayer();
 });
+
+const functions = {
+  wordPicker: wordPicker,
+  guessLetter: guessLetter,
+  theWord: theWord
+};
+
+module.exports = functions;
