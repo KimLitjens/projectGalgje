@@ -36,13 +36,13 @@ const loseGame = function() {
   gameOver = true;
 };
 
-const showWordGameLost = function(word) {
-  document.querySelector(".lose p span").innerHTML = `"${word.join("")}"`;
-};
+// const showWordGameLost = function(word) {
+//   document.querySelector(".lose p span").innerHTML = `"${word.join("")}"`;
+// };
 
-const updateTriesDisplay = function(tries) {
-  document.querySelector(".lives span").innerHTML = 5 - tries;
-};
+// const updateTriesDisplay = function(tries) {
+//   document.querySelector(".lives span").innerHTML = 5 - tries;
+// };
 
 const letters = function(word, inputs) {
   let wrongLetters = inputs.filter(function(letter) {
@@ -115,7 +115,8 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 const functions = {
-  wordPicker: wordPicker
+  wordPicker: wordPicker,
+  guessLetter: guessLetter
 };
 
 module.exports = functions;
