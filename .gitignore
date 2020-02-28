@@ -3,8 +3,4 @@ node_modules/
 
 *.json
 
-<<<<<<< HEAD
 !package.json
-=======
-!package.json
->>>>>>> 53818939ceb7d10c790ce53a1b37f8f3d03b5d64
