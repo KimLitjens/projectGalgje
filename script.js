@@ -25,10 +25,6 @@ const wordGuessed = function(word, inputs) {
   return remaining.length === 0;
 };
 
-const clean = function() {
-  document.querySelector("input").value = "";
-};
-
 const winTheGame = function() {
   document.querySelector(".win").style.display = "block";
   gameOver = true;
@@ -39,7 +35,7 @@ const loseGame = function() {
   gameOver = true;
 };
 
-const spanTheWord1 = function(word) {
+const showWordGameLost = function(word) {
   document.querySelector(".lose p span").innerHTML = `"${word.join("")}"`;
 };
 
@@ -100,7 +96,6 @@ function beginTheGameWithPlayer() {
 
   word = wordpicker(wordList).split("");
   document.querySelector(".lose p span").innerHTML = `"${word.join("")}"`;
-  // word;
 
   tries = 0;
   document.querySelector(".lives span").innerHTML = 5;
