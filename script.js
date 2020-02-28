@@ -13,7 +13,7 @@ const wordList = [
   "snoer",
   "geeuw"
 ];
-const wordpicker = function(list) {
+const wordPicker = function(list) {
   let index = Math.floor(Math.random() * list.length);
   return list[index];
 };
@@ -97,7 +97,7 @@ function beginTheGameWithPlayer() {
   document.querySelector(".lose").style.display = "none";
   document.querySelector("input").value = "";
 
-  word = wordpicker(wordList).split("");
+  word = wordPicker(wordList).split("");
   document.querySelector(".lose p span").innerHTML = `"${word.join("")}"`;
 
   tries = 0;
@@ -108,10 +108,10 @@ function beginTheGameWithPlayer() {
   letters(word, inputs);
 }
 
-//a function to replace the hangingman picture
-function nextPictureStage() {
+// //a function to replace the hangingman picture
+// function nextPictureStage() {
 
-}
+// }
 
 document.addEventListener("DOMContentLoaded", function() {
   document.querySelector(".guess").addEventListener("click", guessLetter);
@@ -123,4 +123,4 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
 
-module.exports = functions;
+module.exports = wordPicker;

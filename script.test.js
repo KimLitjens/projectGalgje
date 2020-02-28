@@ -1,5 +1,5 @@
-const script = require("./script.js");
+const wordPicker = require("./script.js");
 
-test('het woordenlijst', () => {
-
-})
+test('test if the wordPicker', () => {
+    expect(wordPicker()).toBeTruthy();
+});

@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/KimLitjens/projectGalgje/issues"
   },
-  "homepage": "https://github.com/KimLitjens/projectGalgje#readme"
+  "homepage": "https://github.com/KimLitjens/projectGalgje#readme",
+  "devDependencies": {
+    "jest": "^25.1.0"
+  }
 }
