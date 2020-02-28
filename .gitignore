@@ -1,2 +1,10 @@
 .DS_Store
+<<<<<<< HEAD
 node_modules
+=======
+node_modules/
+
+*.json
+
+!package.json
+>>>>>>> 3c08d80c92693c7b9d3e377d1ef5cfab87fec636

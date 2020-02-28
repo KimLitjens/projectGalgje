@@ -13,6 +13,7 @@ const wordList = [
   "snoer",
   "geeuw"
 ];
+<<<<<<< HEAD
 
 const wordPicker = function(list) {
   let index = wordList[Math.floor(Math.random() * wordList.length)];
@@ -24,6 +25,13 @@ const wordPicker = function(list) {
 //   console.log("wat ben ik?", word);
 //   return word;
 // };
+=======
+const wordPicker = () => {
+  let word = wordList[Math.floor(Math.random() * wordList.length)];
+  console.log("wat ben ik?", word);
+  return word;
+};
+>>>>>>> 3c08d80c92693c7b9d3e377d1ef5cfab87fec636
 
 const wordGuessed = function(word, inputs) {
   const remaining = word.filter(function(letter) {
@@ -37,18 +45,28 @@ const winTheGame = function() {
   gameOver = true;
 };
 
+<<<<<<< HEAD
 const gameLost = function() {
+=======
+const loseGame = function() {
+>>>>>>> 3c08d80c92693c7b9d3e377d1ef5cfab87fec636
   document.querySelector(".lose").style.display = "block";
   gameOver = true;
 };
 
-const showWordGameLost = function(word) {
-  document.querySelector(".lose p span").innerHTML = `"${word.join("")}"`;
-};
+// const showWordGameLost = function(word) {
+//   document.querySelector(".lose p span").innerHTML = `"${word.join("")}"`;
+// };
 
+<<<<<<< HEAD
 const updateTriesDisplay = function(tries) {
   document.querySelector(".lives span").innerHTML = 5 - tries;
 };
+=======
+// const updateTriesDisplay = function(tries) {
+//   document.querySelector(".lives span").innerHTML = 5 - tries;
+// };
+>>>>>>> 3c08d80c92693c7b9d3e377d1ef5cfab87fec636
 
 const letters = function(word, inputs) {
   let wrongLetters = inputs.filter(function(letter) {
@@ -91,7 +109,7 @@ const guessLetter = function() {
   if (wordGuessed(word, inputs)) {
     winTheGame();
   } else if (tries >= 5) {
-    gameLost();
+    loseGame();
   }
 };
 
@@ -111,11 +129,6 @@ function beginTheGameWithPlayer() {
   theWord(word, inputs);
   letters(word, inputs);
 }
-
-// //a function to replace the hangingman picture
-// function nextPictureStage() {
-
-// }
 
 document.addEventListener("DOMContentLoaded", function() {
   document.querySelector(".guess").addEventListener("click", guessLetter);
