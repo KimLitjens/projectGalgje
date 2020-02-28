@@ -13,9 +13,10 @@ const wordList = [
   "snoer",
   "geeuw"
 ];
-const wordpicker = function(list) {
-  let index = Math.floor(Math.random() * list.length);
-  return list[index];
+const wordPicker = () => {
+  let word = wordList[Math.floor(Math.random() * wordList.length)];
+  console.log("wat ben ik?", word);
+  return word;
 };
 
 const wordGuessed = function(word, inputs) {
@@ -94,7 +95,7 @@ function beginTheGameWithPlayer() {
   document.querySelector(".lose").style.display = "none";
   document.querySelector("input").value = "";
 
-  word = wordpicker(wordList).split("");
+  word = wordPicker(wordList).split("");
   document.querySelector(".lose p span").innerHTML = `"${word.join("")}"`;
 
   tries = 0;
@@ -112,3 +113,9 @@ document.addEventListener("DOMContentLoaded", function() {
     .addEventListener("click", beginTheGameWithPlayer);
   beginTheGameWithPlayer();
 });
+
+const functions = {
+  wordPicker: wordPicker
+};
+
+module.exports = functions;
