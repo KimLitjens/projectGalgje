@@ -36,9 +36,9 @@ const gameLost = function() {
   gameOver = true;
 };
 
-// const showWordGameLost = function(word) {
-//   document.querySelector(".lose p span").innerHTML = `"${word.join("")}"`;
-// };
+const showWordGameLost = function(word) {
+  document.querySelector(".lose p span").innerHTML = `"${word.join("")}"`;
+};
 
 const updateTriesDisplay = function(tries) {
   document.querySelector(".lives span").innerHTML = 5 - tries;
@@ -85,7 +85,7 @@ const guessLetter = function() {
   if (wordGuessed(word, inputs)) {
     winTheGame();
   } else if (tries >= 5) {
-    loseGame();
+    gameLost();
   }
 };
 

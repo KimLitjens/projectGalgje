@@ -1,5 +1,5 @@
 body {
-  background-color: rgb(255, 255, 255);
+  background-color: rgb(148, 148, 148);
   font-family: 'Lucida Sans';
 }
 
@@ -10,7 +10,7 @@ header {
   border-style: solid;
   border-color: rgb(0, 134, 243);
   border-radius: 20px;
-  background-color: rgb(209, 209, 209);
+  background-color: rgb(255, 255, 255);
   color: rgb(0, 0, 0);
 }
 
@@ -36,6 +36,7 @@ header p {
   float: left;
   height: auto;
   width: auto;
+  background-color: white;
   margin-right: 50px;
   border-style: solid;
   border-color: rgb(0, 134, 243);
@@ -51,6 +52,7 @@ header p {
 
 .singleLetterButton {
   margin: 5px;
+  background-color: white;
   text-decoration: none;
   border-style: solid;
   border-color: rgb(102, 169, 196);
@@ -67,9 +69,9 @@ header p {
 .guess, .restart {
   font-size: 20px;
   border-radius: 10px;
+  background-color: WHITE;
 }
 
 .guess:hover, .restart:hover {
   background-color: rgb(50, 182, 105);
 }
-
