@@ -1,6 +1,11 @@
 body {
+
   background-color: rgb(148, 148, 148);
   font-family: 'Lucida Sans';
+
+  background-color: rgb(255, 255, 255);
+  font-family: "Lucida Sans";
+
 }
 
 header {
@@ -18,7 +23,8 @@ header p {
   font-size: small;
 }
 
-.win, .lose {
+.win,
+.lose {
   display: none;
   text-align: center;
   margin: 50px;
@@ -63,6 +69,7 @@ header p {
   width: 50px;
 }
 
+
 .singleLetterButton:hover {
   background-color: rgb(196, 196, 196);
 }
@@ -84,5 +91,10 @@ header p {
 
 input {
   padding: 10px;
+}
+
+.guess,
+.restart {
+  font-size: 20px;
 }
 

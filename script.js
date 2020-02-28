@@ -2,6 +2,7 @@
 let inputs;
 let gameOver;
 let tries = 0;
+let letterAdded;
 // allTheWords = []
 // This code here selects a random word
 const wordList = [
@@ -36,6 +37,7 @@ const gameLost = function() {
   gameOver = true;
 };
 
+
 const showWordGameLost = function(word) {
   document.querySelector(".lose p span").innerHTML = `"${word.join("")}"`;
 };
@@ -54,6 +56,7 @@ const letters = function(word, inputs) {
 const theWord = function(word, inputLetterWords) {
   let display = word.map(function(letter) {
     if (inputLetterWords.includes(letter)) {
+      letterAdded = letter;
       return letter;
     } else {
       return "_";
@@ -76,6 +79,7 @@ const guessLetter = function() {
   if (!word.includes(input1)) {
     tries++;
     document.querySelector(".lives span").innerHTML = 5 - tries;
+    console.log(tries);
   }
 
   inputs.push(input1);
@@ -106,6 +110,38 @@ function beginTheGameWithPlayer() {
   letters(word, inputs);
 }
 
+// const guessLetterByClick = function() {
+//   console.log("a is clicked");
+//   const input1 = "a";
+//   document.querySelector("input").value = "";
+
+//   if (inputs.includes(input1) || input1 === "") {
+//     return;
+//   }
+
+//   if (!word.includes(input1)) {
+//     tries++;
+
+//     document.querySelector(".lives span").innerHTML = 5 - tries;
+//   }
+
+//   inputs.push(input1);
+//   theWord(word, inputs);
+//   letters(word, inputs);
+
+//   if (wordGuessed(word, inputs)) {
+//     winTheGame();
+//   } else if (tries >= 5) {
+//     loseGame();
+//   }
+// };
+// const btns = document.getElementById("a");
+// console.log(btns);
+// const btnsArr = Array.prototype.slice.call(btns);
+// console.log(btnsArr);
+
+// btns.addEventListener("click", guessLetterByClick);
+
 document.addEventListener("DOMContentLoaded", function() {
   document.querySelector(".guess").addEventListener("click", guessLetter);
   document
@@ -116,7 +152,11 @@ document.addEventListener("DOMContentLoaded", function() {
 
 const functions = {
   wordPicker: wordPicker,
+
   winTheGame: winTheGame
+
+  guessLetter: guessLetter,
+  theWord: theWord
 };
 
 module.exports = functions;
