@@ -35,13 +35,14 @@ const clean = function() {
 };
 
 let gameOver;
+
 const winTheGame = function() {
   document.querySelector(".win").style.display = "block";
   gameOver = true;
 };
 
-const lose4 = function() {
-  // when losing 3 times, this has to happen
+//gameLost had eerst de naam lose4
+const gameLost = function() {
   document.querySelector(".lose").style.display = "block";
   gameOver = true;
 };
@@ -50,7 +51,6 @@ const spanTheWord1 = function(word) {
   document.querySelector(".lose p span").innerHTML = `"${word.join("")}"`;
 };
 
-let tries = 0;
 const updateTriesDisplay = function(tries) {
   document.querySelector(".lives span").innerHTML = 5 - tries;
 };
@@ -97,7 +97,7 @@ const guessLetter = function() {
   if (wordGuessed(word, inputs)) {
     winTheGame();
   } else if (tries >= 5) {
-    lose4();
+    gameLost();
   }
 };
 
