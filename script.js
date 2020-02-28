@@ -12,20 +12,17 @@ const wordList = [
 ];
 let maxAmount = 5;
 
-let word;
+// let word;
 const wordpicker = function(list) {
-  let word = "sinaasappel";
   let index = Math.floor(Math.random() * list.length);
-  const x = list;
-  console.log("wat ben ik?", word);
-  return x[index];
+  return list[index];
 };
 
 let inputs;
 const wordGuessed = function(word, inputs) {
   // remove all letters from word that are already guessed
   // We can do this with a for loop to.
-  let remaining = word.filter(function(letter) {
+  const remaining = word.filter(function(letter) {
     // If the letter is guessed return true (we want to remove that right away)
     return !inputs.includes(letter);
   });
@@ -43,8 +40,7 @@ const winTheGame = function() {
   gameOver = true;
 };
 
-const lose4 = function() {
-  // when losing 3 times, this has to happen
+const loseGame = function() {
   document.querySelector(".lose").style.display = "block";
   gameOver = true;
 };
@@ -100,18 +96,18 @@ const guessLetter = function() {
   if (wordGuessed(word, inputs)) {
     winTheGame();
   } else if (tries >= 5) {
-    lose4();
+    loseGame();
   }
 };
 
-function getThePlayer(player) {
-  let play = document.getElementById("player1");
-  play = play + "We are about to start the game";
-  return play;
-}
+// function getThePlayer(player) {
+//    let play = document.getElementById("player1");
+//   play = play + "We are about to start the game";
+//   return play;
+// }
 
-function beginTheGameWithPlayer(player1) {
-  getThePlayer(player1);
+function beginTheGameWithPlayer() {
+  // getThePlayer(player1);
   gameOver = false;
   document.querySelector(".win").style.display = "none";
   document.querySelector(".lose").style.display = "none";
@@ -119,10 +115,10 @@ function beginTheGameWithPlayer(player1) {
 
   word = wordpicker(wordList).split("");
   document.querySelector(".lose p span").innerHTML = `"${word.join("")}"`;
-  word;
+  // word;
 
   tries = 0;
-  document.querySelector(".lives span").innerHTML = 5 - 0;
+  document.querySelector(".lives span").innerHTML = 5;
 
   inputs = [];
   theWord(word, inputs);
