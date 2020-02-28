@@ -108,6 +108,11 @@ function beginTheGameWithPlayer() {
   letters(word, inputs);
 }
 
+//a function to replace the hangingman picture
+function nextPictureStage() {
+
+}
+
 document.addEventListener("DOMContentLoaded", function() {
   document.querySelector(".guess").addEventListener("click", guessLetter);
   document
@@ -115,3 +120,7 @@ document.addEventListener("DOMContentLoaded", function() {
     .addEventListener("click", beginTheGameWithPlayer);
   beginTheGameWithPlayer();
 });
+
+
+
+module.exports = functions;
