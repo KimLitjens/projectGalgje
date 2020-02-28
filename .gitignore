@@ -1,6 +1,2 @@
 .DS_Store
-node_modules/
-
-*.json
-
-!package.json
+node_modules

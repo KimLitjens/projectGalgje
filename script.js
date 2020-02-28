@@ -14,11 +14,11 @@ const wordList = [
   "snoer",
   "geeuw"
 ];
-const wordPicker = () => {
-  let word = wordList[Math.floor(Math.random() * wordList.length)];
-  console.log("wat ben ik?", word);
-  return word;
-};
+
+const wordPicker = function(list) {
+  let index = wordList[Math.floor(Math.random() * wordList.length)];
+  return index;
+}
 
 const wordGuessed = function(word, inputs) {
   const remaining = word.filter(function(letter) {
@@ -32,9 +32,18 @@ const winTheGame = function() {
   gameOver = true;
 };
 
-const loseGame = function() {
+const gameLost = function() {
   document.querySelector(".lose").style.display = "block";
   gameOver = true;
+};
+
+
+const showWordGameLost = function(word) {
+  document.querySelector(".lose p span").innerHTML = `"${word.join("")}"`;
+};
+
+const updateTriesDisplay = function(tries) {
+  document.querySelector(".lives span").innerHTML = 5 - tries;
 };
 
 const letters = function(word, inputs) {
@@ -80,7 +89,7 @@ const guessLetter = function() {
   if (wordGuessed(word, inputs)) {
     winTheGame();
   } else if (tries >= 5) {
-    loseGame();
+    gameLost();
   }
 };
 
@@ -143,6 +152,9 @@ document.addEventListener("DOMContentLoaded", function() {
 
 const functions = {
   wordPicker: wordPicker,
+
+  winTheGame: winTheGame
+
   guessLetter: guessLetter,
   theWord: theWord
 };
