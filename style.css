@@ -1,5 +1,5 @@
 body {
-  background-color: gray;
+  background-color: white;
   font-family: 'Lucida Sans';
 }
 
@@ -21,4 +21,8 @@ header p {
 
 .lose h2 {
   color: blue;
+}
+
+.stagePictures {
+  float: left;
 }
