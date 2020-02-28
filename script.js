@@ -1,4 +1,7 @@
 // Initialize ALL global variables here
+let inputs;
+let gameOver;
+let tries = 0;
 // allTheWords = []
 // This code here selects a random word
 const wordList = [
@@ -10,23 +13,15 @@ const wordList = [
   "snoer",
   "geeuw"
 ];
-let maxAmount = 5;
-
-// let word;
 const wordpicker = function(list) {
   let index = Math.floor(Math.random() * list.length);
   return list[index];
 };
 
-let inputs;
 const wordGuessed = function(word, inputs) {
-  // remove all letters from word that are already guessed
-  // We can do this with a for loop to.
   const remaining = word.filter(function(letter) {
-    // If the letter is guessed return true (we want to remove that right away)
     return !inputs.includes(letter);
   });
-  // If we have letters left, right?
   return remaining.length === 0;
 };
 
@@ -34,7 +29,6 @@ const clean = function() {
   document.querySelector("input").value = "";
 };
 
-let gameOver;
 const winTheGame = function() {
   document.querySelector(".win").style.display = "block";
   gameOver = true;
@@ -49,14 +43,12 @@ const spanTheWord1 = function(word) {
   document.querySelector(".lose p span").innerHTML = `"${word.join("")}"`;
 };
 
-let tries = 0;
 const updateTriesDisplay = function(tries) {
   document.querySelector(".lives span").innerHTML = 5 - tries;
 };
 
 const letters = function(word, inputs) {
   let wrongLetters = inputs.filter(function(letter) {
-    // If the letter is in the word return.... false/true (we want to remove that then)
     return !word.includes(letter);
   });
   document.querySelector(".guessed_letters").innerHTML = wrongLetters.join(" ");
@@ -100,14 +92,7 @@ const guessLetter = function() {
   }
 };
 
-// function getThePlayer(player) {
-//    let play = document.getElementById("player1");
-//   play = play + "We are about to start the game";
-//   return play;
-// }
-
 function beginTheGameWithPlayer() {
-  // getThePlayer(player1);
   gameOver = false;
   document.querySelector(".win").style.display = "none";
   document.querySelector(".lose").style.display = "none";
