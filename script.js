@@ -10,9 +10,7 @@ const wordList = [
   "snoer",
   "geeuw"
 ];
-let maxAmount = 5;
 
-let word;
 const wordpicker = function(list) {
   let word = "sinaasappel";
   let index = Math.floor(Math.random() * list.length);
@@ -21,7 +19,6 @@ const wordpicker = function(list) {
   return x[index];
 };
 
-let inputs;
 const wordGuessed = function(word, inputs) {
   // remove all letters from word that are already guessed
   // We can do this with a for loop to.
