@@ -19,6 +19,8 @@ const wordpicker = function(list) {
   return x[index];
 };
 
+// let inputs;
+
 const wordGuessed = function(word, inputs) {
   // remove all letters from word that are already guessed
   // We can do this with a for loop to.
@@ -34,7 +36,7 @@ const clean = function() {
   document.querySelector("input").value = "";
 };
 
-let gameOver;
+// let gameOver;
 
 const winTheGame = function() {
   document.querySelector(".win").style.display = "block";
@@ -50,6 +52,8 @@ const gameLost = function() {
 const spanTheWord1 = function(word) {
   document.querySelector(".lose p span").innerHTML = `"${word.join("")}"`;
 };
+
+// let tries = 0;
 
 const updateTriesDisplay = function(tries) {
   document.querySelector(".lives span").innerHTML = 5 - tries;

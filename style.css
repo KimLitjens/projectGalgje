@@ -1,5 +1,17 @@
-.win,
-.lose {
+body {
+  background-color: gray;
+  font-family: 'Lucida Sans';
+}
+
+header {
+  text-align: center;
+}
+
+header p {
+  font-size: small;
+}
+
+.win, .lose {
   display: none;
 }
 
@@ -10,4 +22,3 @@
 .lose h2 {
   color: blue;
 }
-
