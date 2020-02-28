@@ -13,9 +13,10 @@ const wordList = [
   "snoer",
   "geeuw"
 ];
-const wordPicker = function(list) {
-  let index = Math.floor(Math.random() * list.length);
-  return list[index];
+const wordPicker = () => {
+  let word = wordList[Math.floor(Math.random() * wordList.length)];
+  console.log("wat ben ik?", word);
+  return word;
 };
 
 const wordGuessed = function(word, inputs) {
@@ -30,21 +31,18 @@ const winTheGame = function() {
   gameOver = true;
 };
 
-//gameLost had eerst de naam lose4
-const gameLost = function() {
+const loseGame = function() {
   document.querySelector(".lose").style.display = "block";
   gameOver = true;
 };
 
-const showWordGameLost = function(word) {
-  document.querySelector(".lose p span").innerHTML = `"${word.join("")}"`;
-};
+// const showWordGameLost = function(word) {
+//   document.querySelector(".lose p span").innerHTML = `"${word.join("")}"`;
+// };
 
-// let tries = 0;
-
-const updateTriesDisplay = function(tries) {
-  document.querySelector(".lives span").innerHTML = 5 - tries;
-};
+// const updateTriesDisplay = function(tries) {
+//   document.querySelector(".lives span").innerHTML = 5 - tries;
+// };
 
 const letters = function(word, inputs) {
   let wrongLetters = inputs.filter(function(letter) {
@@ -87,7 +85,7 @@ const guessLetter = function() {
   if (wordGuessed(word, inputs)) {
     winTheGame();
   } else if (tries >= 5) {
-    gameLost();
+    loseGame();
   }
 };
 
@@ -108,11 +106,6 @@ function beginTheGameWithPlayer() {
   letters(word, inputs);
 }
 
-// //a function to replace the hangingman picture
-// function nextPictureStage() {
-
-// }
-
 document.addEventListener("DOMContentLoaded", function() {
   document.querySelector(".guess").addEventListener("click", guessLetter);
   document
@@ -121,6 +114,9 @@ document.addEventListener("DOMContentLoaded", function() {
   beginTheGameWithPlayer();
 });
 
+const functions = {
+  wordPicker: wordPicker,
+  guessLetter: guessLetter
+};
 
-
-module.exports = wordPicker;
+module.exports = functions;
