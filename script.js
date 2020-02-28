@@ -1,138 +1,120 @@
 // Initialize ALL global variables here
 // allTheWords = []
 // This code here selects a random word
+
 const wordList = [
-  "vis",
-  "toeter",
-  "developer",
-  "telefoon",
-  "moeder",
-  "snoer",
-  "geeuw"
+	"vis",
+	"toeter",
+	"developer",
+	"telefoon",
+	"moeder",
+	"snoer",
+	"geeuw"
 ];
-let maxAmount = 5;
+const wordPicker = () => {
+	let word = wordList[Math.floor(Math.random() * wordList.length)];
 
-let word;
-const wordpicker = function(list) {
-  let word = "sinaasappel";
-  let index = Math.floor(Math.random() * list.length);
-  const x = list;
-  console.log("wat ben ik?", word);
-  return x[index];
+	console.log("wat ben ik?", word);
+	return word;
 };
 
-let inputs;
 const wordGuessed = function(word, inputs) {
-  // remove all letters from word that are already guessed
-  // We can do this with a for loop to.
-  let remaining = word.filter(function(letter) {
-    // If the letter is guessed return true (we want to remove that right away)
-    return !inputs.includes(letter);
-  });
-  // If we have letters left, right?
-  return remaining.length === 0;
+	// remove all letters from word that are already guessed
+	// We can do this with a for loop to.
+	let remaining = word.filter(function(letter) {
+		// If the letter is guessed return true (we want to remove that right away)
+		return !inputs.includes(letter);
+	});
+	// If we have letters left, right?
+	return remaining.length === 0;
 };
 
-const clean = function() {
-  document.querySelector("input").value = "";
-};
-
-let gameOver;
 const winTheGame = function() {
-  document.querySelector(".win").style.display = "block";
-  gameOver = true;
+	document.querySelector(".win").style.display = "block";
+	gameOver = true;
 };
 
-const lose4 = function() {
-  // when losing 3 times, this has to happen
-  document.querySelector(".lose").style.display = "block";
-  gameOver = true;
+const loseGame = function() {
+	document.querySelector(".lose").style.display = "block";
+	gameOver = true;
 };
 
-const spanTheWord1 = function(word) {
-  document.querySelector(".lose p span").innerHTML = `"${word.join("")}"`;
-};
+function showWordGameLost(word) {
+	document.querySelector(".lose p span").innerHTML = `${word}`;
+}
 
-let tries = 0;
-const updateTriesDisplay = function(tries) {
-  document.querySelector(".lives span").innerHTML = 5 - tries;
-};
+function updateTriesDisplay(tries) {
+	document.querySelector(".lives span").innerHTML = 5 - tries;
+}
 
 const letters = function(word, inputs) {
-  let wrongLetters = inputs.filter(function(letter) {
-    // If the letter is in the word return.... false/true (we want to remove that then)
-    return !word.includes(letter);
-  });
-  document.querySelector(".guessed_letters").innerHTML = wrongLetters.join(" ");
+	let wrongLetters = inputs.filter(function(letter) {
+		// If the letter is in the word return.... false/true (we want to remove that then)
+		return !word.includes(letter);
+	});
+	document.querySelector(".guessed_letters").innerHTML = wrongLetters.join(" ");
 };
 
 const theWord = function(word, inputLetterWords) {
-  let display = word.map(function(letter) {
-    if (inputLetterWords.includes(letter)) {
-      return letter;
-    } else {
-      return "_";
-    }
-  });
-  document.querySelector(".the_word").innerHTML = display.join(" ");
+	let display = word.map(function(letter) {
+		if (inputLetterWords.includes(letter)) {
+			return letter;
+		} else {
+			return "_";
+		}
+	});
+	document.querySelector(".the_word").innerHTML = display.join(" ");
 };
 
 const guessLetter = function() {
-  if (gameOver) {
-    return;
-  }
-  const input1 = document.querySelector("input").value;
-  document.querySelector("input").value = "";
+	if (gameOver) {
+		return;
+	}
+	const chosenLetter = document.querySelector("input").value;
+	document.querySelector("input").value = "";
 
-  if (inputs.includes(input1) || input1 === "") {
-    return;
-  }
+	if (inputs.includes(chosenLetter) || chosenLetter === "") {
+		return;
+	}
 
-  if (!word.includes(input1)) {
-    tries++;
-    document.querySelector(".lives span").innerHTML = 5 - tries;
-  }
+	if (!word.includes(chosenLetter)) {
+		tries++;
+		document.querySelector(".lives span").innerHTML = 5 - tries;
+	}
 
-  inputs.push(input1);
-  theWord(word, inputs);
-  letters(word, inputs);
+	inputs.push(chosenLetter);
+	theWord(word, inputs);
+	letters(word, inputs);
 
-  if (wordGuessed(word, inputs)) {
-    winTheGame();
-  } else if (tries >= 5) {
-    lose4();
-  }
+	if (letterGuessed(word, inputs)) {
+		winTheGame();
+	} else if (tries >= 5) {
+		loseGame();
+	}
 };
 
-function getThePlayer(player) {
-  let play = document.getElementById("player1");
-  play = play + "We are about to start the game";
-  return play;
-}
+function beginTheGameWithPlayer() {
+	gameOver = false;
+	document.querySelector(".win").style.display = "none";
+	document.querySelector(".lose").style.display = "none";
+	document.querySelector("input").value = "";
 
-function beginTheGameWithPlayer(player1) {
-  getThePlayer(player1);
-  gameOver = false;
-  document.querySelector(".win").style.display = "none";
-  document.querySelector(".lose").style.display = "none";
-  document.querySelector("input").value = "";
+	word = wordPicker(wordList).split("");
+	document.querySelector(".lose p span").innerHTML = `"${word.join("")}"`;
+	word;
 
-  word = wordpicker(wordList).split("");
-  document.querySelector(".lose p span").innerHTML = `"${word.join("")}"`;
-  word;
+	tries = 0;
+	document.querySelector(".lives span").innerHTML = 5 - 0;
 
-  tries = 0;
-  document.querySelector(".lives span").innerHTML = 5 - 0;
-
-  inputs = [];
-  theWord(word, inputs);
-  letters(word, inputs);
+	inputs = [];
+	theWord(word, inputs);
+	letters(word, inputs);
 }
 
 document.addEventListener("DOMContentLoaded", function() {
-  document.querySelector(".guess").addEventListener("click", guessLetter);
-  document
-    .querySelector(".restart")
-    .addEventListener("click", beginTheGameWithPlayer);
-  beginTheGameWithPlayer();
+	document.querySelector(".guess").addEventListener("click", guessLetter);
+	document
+		.querySelector(".restart")
+		.addEventListener("click", beginTheGameWithPlayer);
+	beginTheGameWithPlayer();
 });
