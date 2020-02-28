@@ -13,10 +13,17 @@ const wordList = [
   "snoer",
   "geeuw"
 ];
+
 const wordPicker = function(list) {
-  let index = Math.floor(Math.random() * list.length);
-  return list[index];
-};
+  let index = wordList[Math.floor(Math.random() * wordList.length)];
+  return index;
+}
+
+// const wordPicker = () => {
+//   let word = wordList[Math.floor(Math.random() * wordList.length)];
+//   console.log("wat ben ik?", word);
+//   return word;
+// };
 
 const wordGuessed = function(word, inputs) {
   const remaining = word.filter(function(letter) {
@@ -30,7 +37,6 @@ const winTheGame = function() {
   gameOver = true;
 };
 
-//gameLost had eerst de naam lose4
 const gameLost = function() {
   document.querySelector(".lose").style.display = "block";
   gameOver = true;
@@ -39,8 +45,6 @@ const gameLost = function() {
 const showWordGameLost = function(word) {
   document.querySelector(".lose p span").innerHTML = `"${word.join("")}"`;
 };
-
-// let tries = 0;
 
 const updateTriesDisplay = function(tries) {
   document.querySelector(".lives span").innerHTML = 5 - tries;
@@ -121,6 +125,9 @@ document.addEventListener("DOMContentLoaded", function() {
   beginTheGameWithPlayer();
 });
 
+const functions = {
+  wordPicker: wordPicker,
+  winTheGame: winTheGame
+};
 
-
-module.exports = wordPicker;
+module.exports = functions;

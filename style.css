@@ -44,7 +44,7 @@ header p {
 }
 
 .allLetterButtons {
-  padding: 20px;
+  padding: 50px 20px 20px 20px;
   display: grid;
   grid-template-columns: repeat(5, 2fr);
 }
@@ -60,6 +60,16 @@ header p {
   width: 50px;
 }
 
+.singleLetterButton:hover {
+  background-color: rgb(196, 196, 196);
+}
+
 .guess, .restart {
   font-size: 20px;
+  border-radius: 10px;
 }
+
+.guess:hover, .restart:hover {
+  background-color: rgb(50, 182, 105);
+}
+
